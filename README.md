@@ -1,0 +1,1 @@
+# monitor-gauge-laravel-inertiajs
