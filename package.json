@@ -20,8 +20,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "dotenv": "^16.4.5",
         "firebase": "^10.12.2",
+        "prop-types": "^15.8.1",
         "react-gauge-component": "^1.2.21"
     }
 }
