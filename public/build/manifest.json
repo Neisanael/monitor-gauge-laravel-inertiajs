@@ -1,0 +1,23 @@
+{
+  "resources/js/Pages/GaugeMonitorPage.jsx": {
+    "file": "assets/GaugeMonitorPage-DrcW_vNR.js",
+    "name": "GaugeMonitorPage",
+    "src": "resources/js/Pages/GaugeMonitorPage.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-ZDAgCa-D.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/GaugeMonitorPage.jsx"
+    ],
+    "css": [
+      "assets/app-ZMxC9FZ4.css"
+    ]
+  }
+}

@@ -10,16 +10,16 @@ const GaugeMonitorPage = () => {
     const [gaugeData, setGaugeData] = useState([]);
     const [tableData, setTableData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
-    console.log('API Key:', process.env.REACT_APP_FIREBASE_API_KEY);
     const firebaseConfig = {
-        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-        authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-        databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-        projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-        storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-        messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-        appId: process.env.REACT_APP_FIREBASE_APP_ID,
-        measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+        apiKey: "AIzaSyCMQwwA1YzvhDLuNjCeyxfbVimjOg5qixY",
+        authDomain: "testproject-ad4c1.firebaseapp.com",
+        databaseURL:
+            "https://testproject-ad4c1-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "testproject-ad4c1",
+        storageBucket: "testproject-ad4c1.appspot.com",
+        messagingSenderId: "591800987854",
+        appId: "1:591800987854:web:ad84ef20538495f09fa09f",
+        measurementId: "G-3ME60D5KDY",
     };
 
     useEffect(() => {
@@ -56,11 +56,11 @@ const GaugeMonitorPage = () => {
 
     const transformDataTable = (data) => {
         return {
-            no: tableData.length + 1, // Incremental row number
-            tanggalJam: data.tanggalJam || "",
-            suhuRuang: data.suhuRuang || "",
-            kelembabanRuang: data.kelembabanRuang || "",
-            suhuKulkas: data.suhuKulkas || "",
+            no: tableData.length + 1,  // Incremental row number
+            tanggalJam: data.tanggalJam || '',
+            suhuRuang: data.suhuRuang || '',
+            kelembabanRuang: data.kelembabanRuang || '',
+            suhuKulkas: data.suhuKulkas || '',
         };
     };
 
@@ -70,25 +70,18 @@ const GaugeMonitorPage = () => {
         const database = getDatabase(app);
         const tableRef = ref(database, "table");
 
-        onValue(
-            tableRef,
-            (snapshot) => {
-                if (snapshot.exists()) {
-                    const dataTable = snapshot.val();
-                    console.log("Raw data from Firebase:", dataTable);
-                    const transformedDataTable = transformDataTable(dataTable);
-                    console.log("Transformed data:", transformedDataTable);
-                    setTableData((prevData) => [
-                        ...prevData,
-                        transformedDataTable,
-                    ]);
-                    setIsFetching(false);
-                } else {
-                    setIsFetching(false);
-                }
-            },
-            { onlyOnce: true }
-        );
+        onValue(tableRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const dataTable = snapshot.val();
+                console.log('Raw data from Firebase:', dataTable);
+                const transformedDataTable = transformDataTable(dataTable);
+                console.log('Transformed data:', transformedDataTable);
+                setTableData((prevData) => [...prevData, transformedDataTable]);
+                setIsFetching(false);
+            } else {
+                setIsFetching(false);
+            }
+        }, { onlyOnce: true });
     };
 
     return (
